@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Search, Download } from "lucide-react";
+import { Search } from "lucide-react";
 import { EQUIPMENT, SITES } from "../data/mockData";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/Table";
 import { Badge } from "../components/ui/Badge";
-import { Button } from "../components/ui/Button";
 import { useLanguage } from "../context/LanguageContext";
 import { Card } from "../components/ui/Card";
 
