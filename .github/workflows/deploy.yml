@@ -14,10 +14,19 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: '--max-old-space-size=4096'
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Diagnostic info
+        run: |
+          echo "Node version:" && node -v
+          echo "npm version:" && npm -v
+          echo "Memory:" && free -h || true
+          echo "Disk usage:" && df -h || true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
