@@ -44,10 +44,10 @@ export default function Login() {
         <div className="min-h-screen flex w-full">
             {/* Left Panel - Brand */}
             <div className="hidden lg:flex w-1/2 bg-brand-primary relative items-center justify-center overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/assets/logoocean.png')] bg-no-repeat bg-center opacity-5 scale-150 blur-sm"></div>
+                <div className="absolute inset-0 bg-no-repeat bg-center opacity-5 scale-150 blur-sm" style={{ backgroundImage: `url(${import.meta.env.BASE_URL}assets/logoocean.png)` }}></div>
 
                 <div className="relative z-10 p-12 text-white max-w-lg">
-                    <img src="/assets/logoocean.png" alt="Ocean Security" className="h-24 w-auto mb-8 bg-white/10 p-4 rounded-xl backdrop-blur-sm" />
+                    <img src={`${import.meta.env.BASE_URL}assets/logoocean.png`} alt="Ocean Security" className="h-24 w-auto mb-8 bg-white/10 p-4 rounded-xl backdrop-blur-sm" />
                     <h1 className="text-4xl font-bold mb-4">{t('login.title')}</h1>
                     <p className="text-blue-100 text-lg mb-8">
                         {t('login.subtitle')}
@@ -72,7 +72,7 @@ export default function Login() {
                 <div className="w-full max-w-md space-y-8 bg-white p-10 rounded-2xl shadow-xl border border-slate-100">
                     <div className="text-center lg:text-left">
                         <img
-                            src="/assets/logoocean.png"
+                            src={`${import.meta.env.BASE_URL}assets/logoocean.png`}
                             alt="Ocean Security"
                             className="h-16 mx-auto lg:mx-0 mb-6 lg:hidden"
                         />

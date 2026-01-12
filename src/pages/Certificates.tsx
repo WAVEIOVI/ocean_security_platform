@@ -84,7 +84,7 @@ export default function Certificates() {
                         {/* Header */}
                         <div className="p-8 border-b border-slate-200 flex justify-between items-start">
                             <div className="flex items-center gap-3">
-                                <img src="/assets/logoocean.png" alt="Ocean Security" className="h-16 w-auto object-contain" onError={(e) => e.currentTarget.style.display = 'none'} />
+                                <img src={`${import.meta.env.BASE_URL}assets/logoocean.png`} alt="Ocean Security" className="h-16 w-auto object-contain" onError={(e) => e.currentTarget.style.display = 'none'} />
                                 <div>
                                     <h2 className="text-xl font-bold text-brand-primary">OCEAN SECURITY</h2>
                                     <p className="text-xs text-slate-500">Fire Safety & Prevention Services</p>
@@ -174,7 +174,7 @@ export default function Certificates() {
                                 </div>
                                 <div>
                                     <p className="text-xs font-bold text-slate-400 uppercase mb-8">{t('certificates.auth_signature')}</p>
-                                    <img src="/assets/logo_approuve.png" className="h-16 mb-4 object-contain" alt="Signature" onError={(e) => e.currentTarget.style.display = 'none'} />
+                                    <img src={`${import.meta.env.BASE_URL}assets/logo_approuve.png`} className="h-16 mb-4 object-contain" alt="Signature" onError={(e) => e.currentTarget.style.display = 'none'} />
                                     <div className="h-px bg-slate-300 mt-2"></div>
                                 </div>
                             </div>

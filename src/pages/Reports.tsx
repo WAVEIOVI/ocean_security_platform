@@ -108,7 +108,7 @@ export default function Reports() {
                             {/* 1. Header & Context */}
                             <div className="flex justify-between items-start border-b border-slate-100 pb-8">
                                 <div className="flex items-center gap-4">
-                                    <img src="/assets/logoocean.png" alt="Ocean Security" className="h-16 w-auto" />
+                                    <img src={`${import.meta.env.BASE_URL}assets/logoocean.png`} alt="Ocean Security" className="h-16 w-auto" />
                                     <div>
                                         <h3 className="font-bold text-brand-primary text-lg">OCEAN SECURITY</h3>
                                         <p className="text-sm text-slate-500">Tunis, Tunisie</p>
@@ -244,7 +244,7 @@ export default function Reports() {
                                                     <p className="text-xs text-slate-400 uppercase">{t('report.approved_by')}</p>
                                                     <p className="font-handwriting text-2xl text-blue-900 mt-2 transform -rotate-2">Client Signature</p>
                                                 </div>
-                                                <img src="/assets/logo_approuve.png" alt="Approved" className="h-16 w-auto opacity-80" />
+                                                <img src={`${import.meta.env.BASE_URL}assets/logo_approuve.png`} alt="Approved" className="h-16 w-auto opacity-80" />
                                             </div>
                                         </div>
                                     </div>

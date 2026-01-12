@@ -36,7 +36,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
                     <div className="flex items-center gap-2">
                         {/* Logo Placeholder */}
                         <img
-                            src="/assets/logoocean.png"
+                            src={`${import.meta.env.BASE_URL}assets/logoocean.png`}
                             alt={t('app.title')}
                             className="h-8 w-auto object-contain"
                             onError={(e) => {
