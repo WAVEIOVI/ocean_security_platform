@@ -89,7 +89,13 @@ export default function Reports() {
                                 </p>
                             </div>
                             <div className="flex gap-2">
-                                <Button variant="outline" onClick={() => {/* Download Logic */ }}>
+                                {selectedReport.fileUrl && (
+                                    <Button variant="secondary" onClick={() => window.open(selectedReport.fileUrl, '_blank')}>
+                                        <FileText size={18} className="mr-2" />
+                                        {t('common.view')}
+                                    </Button>
+                                )}
+                                <Button variant="outline" onClick={() => selectedReport.downloadUrl && window.open(selectedReport.downloadUrl, '_blank')}>
                                     <Download size={18} className="mr-2" />
                                     {t('common.download')}
                                 </Button>

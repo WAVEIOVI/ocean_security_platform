@@ -68,7 +68,7 @@ export default function Certificates() {
                                 <Button variant="secondary" className="w-full gap-2" onClick={() => setSelectedCert(cert)}>
                                     <Eye size={16} /> {t('common.view')}
                                 </Button>
-                                <Button variant="outline" className="w-full gap-2">
+                                <Button variant="outline" className="w-full gap-2" onClick={() => (cert as any).downloadUrl && window.open((cert as any).downloadUrl, '_blank')}>
                                     <Download size={16} /> {t('certificates.pdf')}
                                 </Button>
                             </div>
@@ -183,9 +183,16 @@ export default function Certificates() {
                         {/* Footer */}
                         <div className="p-6 bg-slate-50 border-t border-slate-200 flex justify-between items-center mt-auto">
                             <p className="text-xs text-slate-400">{t('certificates.generated_by')} • {new Date().getFullYear()}</p>
-                            <Button className="gap-2">
-                                <Download size={16} /> {t('certificates.download_pdf')}
-                            </Button>
+                            <div className="flex gap-2">
+                                {(selectedCert as any).fileUrl && (
+                                    <Button variant="secondary" className="gap-2" onClick={() => window.open((selectedCert as any).fileUrl, '_blank')}>
+                                        <Eye size={16} /> {t('common.view')}
+                                    </Button>
+                                )}
+                                <Button className="gap-2" onClick={() => (selectedCert as any).downloadUrl && window.open((selectedCert as any).downloadUrl, '_blank')}>
+                                    <Download size={16} /> {t('certificates.download_pdf')}
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 )}

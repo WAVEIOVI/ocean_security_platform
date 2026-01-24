@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Mission - Sécurité Incendie - SERINUS TUNISIA</title>
+    <style>
+        /* Import Azonix Font */
+        @import url('https://fonts.cdnfonts.com/css/azonix');
+
+        /* --- GENERAL STYLES --- */
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #cc0000;
+            --warning-color: #e67e22;
+            --success-color: #27ae60;
+            --accent-color: #f4f4f4;
+            --text-color: #333;
+            --border-color: #ddd;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-title: 'Azonix', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        /* --- PAGE CONTAINERS --- */
+        .page-container {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+            position: relative;
+            page-break-after: always;
+        }
+
+        /* Cover Page - Full bleed background */
+        .cover-page {
+            background-image: url('assest/cover page.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 0;
+            margin: 20px auto;
+        }
+
+        /* Title Page */
+        .title-page {
+            padding: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .title-page-content {
+            text-align: center;
+            padding: 80mm 40mm;
+        }
+
+        .title-logo {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 40px;
+        }
+
+        .title-company {
+            font-family: var(--font-title);
+            font-size: 40px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 25px;
+            letter-spacing: 3px;
+        }
+
+        .title-service {
+            font-family: var(--font-title);
+            font-size: 32px;
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 20px;
+        }
+
+        .title-description {
+            font-family: var(--font-title);
+            font-size: 20px;
+            color: #000;
+            font-weight: 600;
+            line-height: 2;
+        }
+
+        /* Content Pages - Matching paper en tete.png */
+        .content-page {
+            padding: 0;
+            background: white;
+            position: relative;
+        }
+
+        /* Frame matching paper en tete.png exactly */
+        .page-frame {
+            position: absolute;
+            top: 10mm;
+            left: 10mm;
+            right: 10mm;
+            bottom: 10mm;
+            border: 3px solid #000;
+            pointer-events: none;
+        }
+
+        /* Header section inside the frame */
+        .page-header {
+            position: absolute;
+            top: 10mm;
+            left: 10mm;
+            right: 10mm;
+            height: 70px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+        }
+
+        .header-logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-logo-img {
+            width: 55px;
+            height: 55px;
+        }
+
+        .header-text {
+            line-height: 1.3;
+        }
+
+        .header-company-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            letter-spacing: 0.5px;
+        }
+
+        .header-tagline {
+            font-size: 8px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .header-doc-type {
+            position: absolute;
+            bottom: 8px;
+            left: 15px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* Content area inside frame */
+        .content-with-frame {
+            position: absolute;
+            top: 90px;
+            left: 25mm;
+            right: 25mm;
+            bottom: 25mm;
+        }
+
+        /* Back Page - Full bleed background */
+        .back-page {
+            background-image: url('assest/back page.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 0;
+            margin: 20px auto;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1 {
+            font-size: 22px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 17px;
+            color: var(--primary-color);
+            margin-top: 20px;
+            margin-bottom: 12px;
+            background-color: var(--accent-color);
+            padding: 8px;
+            border-left: 6px solid var(--primary-color);
+            border-radius: 4px;
+            page-break-inside: avoid;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 13px;
+            color: #555;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            page-break-inside: avoid;
+            page-break-after: avoid;
+        }
+
+        p {
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+
+        /* --- INFO GRID --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .info-box {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            border-radius: 5px;
+            background-color: #fdfdfd;
+        }
+
+        .info-box h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 13px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            border-bottom: 1px solid #eee;
+            padding: 4px 0;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        /* --- KPI DASHBOARD --- */
+        .kpi-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .kpi-card {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px;
+            text-align: center;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card.warning {
+            background: var(--warning-color);
+        }
+
+        .kpi-card.danger {
+            background: var(--secondary-color);
+        }
+
+        .kpi-card.success {
+            background: var(--success-color);
+        }
+
+        .kpi-number {
+            font-size: 22px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .kpi-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .kpi-icon {
+            font-size: 32px;
+            opacity: 0.15;
+            position: absolute;
+            top: 6px;
+            right: 6px;
+        }
+
+        /* --- TABLES --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 18px;
+            font-size: 10px;
+            page-break-inside: avoid;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--border-color);
+            padding: 6px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 9px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .status-ok {
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .status-nok {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .status-pending {
+            color: var(--warning-color);
+            font-weight: bold;
+        }
+
+        /* --- CHECKLIST --- */
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 12px;
+        }
+
+        .checklist-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 10px;
+            padding: 5px;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .check-box {
+            font-family: monospace;
+            font-size: 13px;
+            color: var(--success-color);
+        }
+
+        .check-box.nc {
+            color: var(--secondary-color);
+        }
+
+        /* --- CHARTS --- */
+        .chart-container {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .bar-chart {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            height: 160px;
+            border-bottom: 2px solid var(--border-color);
+            position: relative;
+        }
+
+        .bar {
+            width: 30px;
+            background-color: var(--primary-color);
+            position: relative;
+        }
+
+        .bar.warning {
+            background-color: var(--warning-color);
+        }
+
+        .bar.danger {
+            background-color: var(--secondary-color);
+        }
+
+        .bar-label {
+            position: absolute;
+            bottom: -16px;
+            font-size: 9px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -16px;
+            font-size: 9px;
+            color: var(--text-color);
+            width: 100%;
+            text-align: center;
+        }
+
+        .pie-chart {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        /* --- CERTIFICATE --- */
+        .certificate {
+            border: 3px solid var(--primary-color);
+            padding: 18px;
+            background-color: #f0f8ff;
+            margin-top: 18px;
+            text-align: center;
+            border-radius: 7px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cert-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            display: block;
+            text-transform: uppercase;
+        }
+
+        .cert-text {
+            font-style: italic;
+            font-size: 11px;
+            margin-bottom: 10px;
+        }
+
+        /* --- SIGNATURES --- */
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+        }
+
+        .sig-box {
+            width: 48%;
+            border-top: 2px solid #333;
+            padding-top: 10px;
+            text-align: center;
+        }
+
+        .sig-title {
+            font-weight: bold;
+            font-size: 10px;
+            display: block;
+            margin-bottom: 35px;
+        }
+
+        /* --- PRINT SETTINGS --- */
+        @media print {
+            body {
+                background: white;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .page-container {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+
+            .cover-page,
+            .back-page {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                background-size: cover !important;
+                background-position: center !important;
+            }
+
+            .no-print {
+                display: none;
+            }
+
+            h1,
+            h2,
+            h3 {
+                break-after: avoid;
+            }
+
+            table {
+                break-inside: avoid;
+            }
+
+            tr {
+                break-inside: avoid;
+                break-after: auto;
+            }
+
+            .chart-container {
+                break-inside: avoid;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Utility classes */
+        .page-header-text {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            color: #777;
+            font-size: 9px;
+            text-align: center;
+        }
+
+        /* --- PORTFOLIO --- */
+        .portfolio-section {
+            margin-top: 20px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-item {
+            text-align: center;
+            border: 1px solid #eee;
+            padding: 5px;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border-radius: 4px;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 2px;
+            margin-bottom: 5px;
+            border: 1px solid #eee;
+        }
+
+        .portfolio-label {
+            font-size: 9px;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            display: block;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- COVER PAGE -->
+    <div class="page-container cover-page">
+        <!-- Background image from assest/cover page.png -->
+    </div>
+
+    <!-- TITLE PAGE -->
+    <div class="page-container title-page">
+        <div class="title-page-content">
+            <img src="assest/logo/logo approuvé.png" alt="Ocean Security Logo" class="title-logo">
+            <div class="title-company">OCEAN SECURITY</div>
+            <div class="title-service">RAPPORT DE MISSION</div>
+            <div class="title-description">
+                L'INSPECTION ET L'ENTRETIEN<br>
+                DES EXTINCTEURS ET DES RIA
+            </div>
+            <div class="title-description">MR-2026-001-SERINUS</div>
+            <div class="title-description">SERINUS TUNISIA B.V.</div>
+        </div>
+    </div>
+
+    <!-- CONTENT PAGE 1 -->
+    <div class="page-container content-page">
+        <div class="page-frame"></div>
+        <div class="page-header">
+            <div class="header-logo-section">
+                <img src="assest/logo/logo approuvé.png" alt="Ocean Security" class="header-logo-img">
+                <div class="header-text">
+                    <div class="header-company-name">OCEAN SECURITY</div>
+                    <div class="header-tagline">Our goal is to ensure your safety</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-with-frame">
+            <div style="text-align: right; margin-bottom: 25px;">
+                <h1>Rapport de Mission</h1>
+                <p><strong>Réf:</strong> MR-2026-001-SERINUS</p>
+                <p><strong>Date d'édition:</strong> 24 Janvier 2026</p>
+            </div>
+
+            <div
+                style="margin-bottom: 18px; font-style: italic; font-size: 11px; background: #eef; padding: 10px; border-left: 4px solid var(--primary-color); border-radius: 4px;">
+                <strong>Avant-propos :</strong> L'équipe d'Ocean Sécurité tient à remercier l'ensemble des responsables
+                techniques
+                et administratifs pour leur coopération exemplaire et leur disponibilité durant l'intégralité de cette
+                mission. Ce rapport
+                détaillé présente l'état de conformité des équipements de sécurité incendie conformément aux règles en
+                vigueur,
+                notamment l'APSAD R4, les normes NF EN 3 ainsi que les exigences réglementaires tunisiennes et
+                internationales
+                applicables.
+            </div>
+
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>Informations Client</h3>
+                    <div class="info-row"><span class="label">Société:</span> <span>SERINUS TUNISIA B.V.</span></div>
+                    <div class="info-row"><span class="label">Adresse:</span> <span>Chouech Essaida et station El
+                            Borma</span></div>
+                    <div class="info-row"><span class="label">Contact:</span> <span>Skander Jrad (Responsable
+                            QHSE)</span></div>
+                    <div class="info-row"><span class="label">Secteur:</span> <span>PÉTROLIER</span></div>
+                </div>
+                <div class="info-box">
+                    <h3>Détails Intervention</h3>
+                    <div class="info-row"><span class="label">Date Début:</span> <span>09/01/2026</span></div>
+                    <div class="info-row"><span class="label">Date Fin:</span> <span>19/01/2026</span></div>
+                    <div class="info-row"><span class="label">Durée:</span> <span>11 jours</span></div>
+                    <div class="info-row"><span class="label">Techniciens:</span> <span>M. Kallel, M. Chafei</span>
+                    </div>
+                    <div class="info-row"><span class="label">Type:</span> <span>Vérification Périodique</span></div>
+                    <div class="info-row"><span class="label">Normes:</span> <span>APSAD R4, R5, NF EN 3</span></div>
+                </div>
+            </div>
+
+            <h2>Statistiques Clés (KPI)</h2>
+            <div class="kpi-container">
+                <div class="kpi-card">
+                    <span class="kpi-icon">&#128736;</span>
+                    <span class="kpi-number">170</span>
+                    <span class="kpi-label">Équipements Inspectés</span>
+                </div>
+                <div class="kpi-card success">
+                    <span class="kpi-icon">&#10004;</span>
+                    <span class="kpi-number">169</span>
+                    <span class="kpi-label">Conformes</span>
+                </div>
+                <div class="kpi-card warning">
+                    <span class="kpi-icon">&#9888;</span>
+                    <span class="kpi-number">4</span>
+                    <span class="kpi-label">Actions Correctives</span>
+                </div>
+                <div class="kpi-card danger">
+                    <span class="kpi-icon">&#10060;</span>
+                    <span class="kpi-number">2</span>
+                    <span class="kpi-label">Hors Service</span>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>Taux de Conformité</h3>
+                <p style="font-size: 10px;">Taux global de conformité : 99,4%</p>
+                <div class="pie-chart"
+                    style="background: conic-gradient(var(--success-color) 0% 99.4%, var(--warning-color) 99.4% 99.8%, var(--secondary-color) 99.8% 100%);">
+                    <div
+                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; width: 100px; height: 100px; border-radius: 50%;">
+                    </div>
+                </div>
+                <p style="margin-top: 8px; font-size: 9px;"><em>Vert: Conformes (99,4%), Orange: Actions (0,4%), Rouge:
+                        HS (0,2%)</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT PAGE 2: Non-Conformities -->
+    <div class="page-container content-page">
+        <div class="page-frame"></div>
+        <div class="page-header">
+            <div class="header-logo-section">
+                <img src="assest/logo/logo approuvé.png" alt="Ocean Security" class="header-logo-img">
+                <div class="header-text">
+                    <div class="header-company-name">OCEAN SECURITY</div>
+                    <div class="header-tagline">Our goal is to ensure your safety</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-with-frame">
+            <div class="page-header-text">Rapport de Mission - SERINUS TUNISIA B.V. | Page 2/8</div>
+
+            <h2>1. Non-Conformités & Actions Correctives</h2>
+            <p>Cette section détaille l'ensemble des anomalies détectées lors de l'inspection approfondie, classées par
+                niveau de gravité. Au total, 4 anomalies majeures ont été identifiées durant cette intervention, dont 3
+                ont été résolues directement sur site par notre équipe technique.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 5%;">#</th>
+                        <th style="width: 30%;">Anomalie Détectée</th>
+                        <th style="width: 10%;">Gravité</th>
+                        <th style="width: 20%;">Référence</th>
+                        <th style="width: 35%;">Action Corrective</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Certains extincteurs contiennent une poudre détériorée, non conforme et impropre à
+                            l’utilisation, tandis que d’autres sont totalement vides.</td>
+                        <td><span class="status-nok">Haute</span></td>
+                        <td>APSAD R4, Art. 5.2</td>
+                        <td><span class="status-ok">RÉSOLU :</span> Les extincteurs vides ont été rechargés et la poudre
+                            périmée a été remplacée par une poudre conforme.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Certains extincteurs à CO₂ étaient entièrement vides.</td>
+                        <td><span class="status-nok">Haute</span></td>
+                        <td>APSAD R4, Art. 5.2</td>
+                        <td><span class="status-ok">RÉSOLU :</span> La recharge de ces extincteurs a été effectuée.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Certaines pièces de rechange ont été constatées endommagées</td>
+                        <td><span class="status-nok">Haute</span></td>
+                        <td>APSAD R4, Art. 6.1</td>
+                        <td><span class="status-ok">RÉSOLU :</span> Les pièces défectueuses ont été remplacées par des
+                            pièces neuves et conformes aux normes en vigueur.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Présence de peinture écaillée et début de corrosion sur certains extincteurs.</td>
+                        <td><span class="status-pending">Moyenne</span></td>
+                        <td>NF EN 3-7, Sec. 4</td>
+                        <td><span class="status-ok">RÉSOLU :</span> Contrôle de l’épaisseur conforme. Décapage et
+                            repeinture réalisés.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- CONTENT PAGE 3: Daily Attendance -->
+    <div class="page-container content-page">
+        <div class="page-frame"></div>
+        <div class="page-header">
+            <div class="header-logo-section">
+                <img src="assest/logo/logo approuvé.png" alt="Ocean Security" class="header-logo-img">
+                <div class="header-text">
+                    <div class="header-company-name">OCEAN SECURITY</div>
+                    <div class="header-tagline">Our goal is to ensure your safety</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-with-frame">
+            <div class="page-header-text">Rapport de Mission - SERINUS TUNISIA B.V. | Page 3/8</div>
+
+            <h2>2. Fiche de Présence Journalière</h2>
+            <p>Détail journalier des activités réalisées durant la mission, incluant déplacements et interventions
+                techniques.</p>
+
+            <h3>Déplacement et Accès au Site</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">Date</th>
+                        <th style="width: 8%;">Heure</th>
+                        <th style="width: 28%;">Activité</th>
+                        <th style="width: 22%;">Lieu</th>
+                        <th style="width: 18%;">Transport</th>
+                        <th style="width: 14%;">Obs.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3"><strong>09/01</strong></td>
+                        <td>06:00</td>
+                        <td>Départ équipe technique</td>
+                        <td>Sfax (Siège Ocean Security)</td>
+                        <td>Véhicule client 4x4</td>
+                        <td>Équipe + matériel</td>
+                    </tr>
+                    <tr>
+                        <td>12:00</td>
+                        <td>Arrivée Tataouine</td>
+                        <td>Tataouine (Accès Sahara)</td>
+                        <td>Véhicule client 4x4</td>
+                        <td>Transfert SERINUS</td>
+                    </tr>
+                    <tr>
+                        <td>18:00</td>
+                        <td>Arrivée sur site</td>
+                        <td>Chouech Essaida / El Borma</td>
+                        <td>-</td>
+                        <td>Briefing QHSE</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Journal des Activités (10/01 - 19/01/2026)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Date</th>
+                        <th style="width: 20%;">Techniciens</th>
+                        <th style="width: 40%;">Activités</th>
+                        <th style="width: 25%;">Zone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>10/01</strong></td>
+                        <td>Kallel/Chafei</td>
+                        <td>• Inspection préliminaire et Identification</td>
+                        <td>Chouech</td>
+                    </tr>
+                    <tr>
+                        <td><strong>11/01</strong></td>
+                        <td>Kallel/Chafei</td>
+                        <td>• Vérification Poudre (9kg/50kg) et Tests</td>
+                        <td>Chouech</td>
+                    </tr>
+                    <tr>
+                        <td><strong>12/01</strong></td>
+                        <td>Kallel/Chafei</td>
+                        <td>• Vérification CO2 et Maintenance</td>
+                        <td>Chouech</td>
+                    </tr>
+                    <tr>
+                        <td><strong>13/01</strong></td>
+                        <td>Kallel/Chafei</td>
+                        <td>• Inspection RIA et Canons</td>
+                        <td>Chouech</td>
+                    </tr>
+                    <tr>
+                        <td><strong>14/01</strong></td>
+                        <td>Kallel/Chafei</td>
+                        <td>• Inspection Poteaux Incendie</td>
+                        <td>Chouech</td>
+                    </tr>
+                    <tr>
+                        <td><strong>15/01</strong></td>
+                        <td>Kallel/Chafei</td>
+                        <td>• Traitement corrosion et Maintenance Atelier</td>
+                        <td>Chouech</td>
+                    </tr>
+                    <tr>
+                        <td><strong>16/01</strong></td>
+                        <td>Kallel/Chafei</td>
+                        <td>• Peinture et Remplacement pièces</td>
+                        <td>Chouech</td>
+                    </tr>
+                    <tr>
+                        <td><strong>17/01</strong></td>
+                        <td>Kallel/Chafei</td>
+                        <td>• Remise en état général et Finitions</td>
+                        <td>Chouech</td>
+                    </tr>
+                    <tr>
+                        <td><strong>18/01</strong></td>
+                        <td>Kallel/Chafei</td>
+                        <td>• Tests finaux, Signalétique et Audit QHSE</td>
+                        <td>Chouech</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Retour du Site (19/01)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 10%;">Date</th>
+                        <th style="width: 8%;">Heure</th>
+                        <th style="width: 28%;">Activité</th>
+                        <th style="width: 22%;">Lieu</th>
+                        <th style="width: 18%;">Transport</th>
+                        <th style="width: 14%;">Obs.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3"><strong>19/01</strong></td>
+                        <td>06:00</td>
+                        <td>Départ du site</td>
+                        <td>Chouech Essaida</td>
+                        <td>Véhicule client 4x4</td>
+                        <td>Retour Équipe</td>
+                    </tr>
+                    <tr>
+                        <td>12:00</td>
+                        <td>Escale / Arrivée</td>
+                        <td>Tataouine</td>
+                        <td>Véhicule client 4x4</td>
+                        <td>Transfert</td>
+                    </tr>
+                    <tr>
+                        <td>18:00</td>
+                        <td>Arrivée Siège</td>
+                        <td>Sfax (Siège Ocean Security)</td>
+                        <td>-</td>
+                        <td>Fin de mission</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div
+                style="background-color: #f0f8ff; padding: 10px; border-left: 4px solid var(--primary-color); margin: 12px 0; font-size: 10px;">
+                <p><strong>Durée:</strong> 11 jours | <strong>Heures:</strong> ~130h | <strong>Distance:</strong> ~950
+                    km
+                    | <strong>Taux:</strong> 99,4%</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- CONTENT PAGE 4: Checklist & Inventory -->
+    <div class="page-container content-page">
+        <div class="page-frame"></div>
+        <div class="page-header">
+            <div class="header-logo-section">
+                <img src="assest/logo/logo approuvé.png" alt="Ocean Security" class="header-logo-img">
+                <div class="header-text">
+                    <div class="header-company-name">OCEAN SECURITY</div>
+                    <div class="header-tagline">Our goal is to ensure your safety</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-with-frame">
+            <div class="page-header-text">Rapport de Mission - SERINUS TUNISIA B.V. | Page 4/8</div>
+
+            <h2>3. Contrôle sur Chantier (Checklist)</h2>
+            <p>Liste exhaustive des vérifications. Conformité (C) ou non-conformité (NC).</p>
+            <div class="checklist-grid">
+                <div>
+                    <div class="checklist-item"><span>Cohérence type</span> <span class="check-box">&#9745; C</span>
+                    </div>
+                    <p style="font-size: 9px; margin-left: 12px;">Type conforme au risque</p>
+                    <div class="checklist-item"><span>Numérotation</span> <span class="check-box">&#9745; C</span></div>
+                    <p style="font-size: 9px; margin-left: 12px;">Équipements identifiables</p>
+                    <div class="checklist-item"><span>Signalétique</span> <span class="check-box">&#9745; C</span></div>
+                    <p style="font-size: 9px; margin-left: 12px;">Panneaux conformes</p>
+                    <div class="checklist-item"><span>Personnel</span> <span class="check-box">&#9745; C</span></div>
+                    <p style="font-size: 9px; margin-left: 12px;">Personnel formé</p>
+                </div>
+                <div>
+                    <div class="checklist-item"><span>Densité</span> <span class="check-box">&#9745; C</span></div>
+                    <p style="font-size: 9px; margin-left: 12px;">1/250m² respectée</p>
+                    <div class="checklist-item"><span>Adéquation</span> <span class="check-box">&#9745; C</span></div>
+                    <p style="font-size: 9px; margin-left: 12px;">Type adapté</p>
+                    <div class="checklist-item"><span>Couverture</span> <span class="check-box">&#9745; C</span></div>
+                    <p style="font-size: 9px; margin-left: 12px;">Housses/coffrets OK</p>
+                    <div class="checklist-item"><span>Fixation</span> <span class="check-box">&#9745; C</span></div>
+                    <p style="font-size: 9px; margin-left: 12px;">Supports conformes</p>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 18px;">4. Inventaire du Parc Matériel</h2>
+            <p>Inventaire exhaustif: 170 unités fonctionnelles et conformes.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>1kg</th>
+                        <th>2kg</th>
+                        <th>4-6kg</th>
+                        <th>5kg</th>
+                        <th>9kg</th>
+                        <th>50kg</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Poudre ABC</strong></td>
+                        <td>9</td>
+                        <td>-</td>
+                        <td>9</td>
+                        <td>-</td>
+                        <td>66</td>
+                        <td>24</td>
+                        <td><strong>108</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>CO2</strong></td>
+                        <td>-</td>
+                        <td>7</td>
+                        <td>-</td>
+                        <td>29</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td><strong>36</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>RIA DN 33</strong></td>
+                        <td colspan="6" style="text-align: center;">-</td>
+                        <td><strong>3</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lance Canon</strong></td>
+                        <td colspan="6" style="text-align: center;">-</td>
+                        <td><strong>3</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Poteau Inc.</strong></td>
+                        <td colspan="6" style="text-align: center;">-</td>
+                        <td><strong>20</strong></td>
+                    </tr>
+                    <tr style="background-color: #eee;">
+                        <td><strong>TOTAL</strong></td>
+                        <td colspan="6" style="text-align: center;"><strong>170 Unités</strong></td>
+                        <td><strong>100%</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="chart-container">
+                <h3>Répartition par Type</h3>
+                <div class="bar-chart">
+                    <div class="bar" style="height: 100px;"><span class="bar-value">108</span><span
+                            class="bar-label">Poudre</span></div>
+                    <div class="bar warning" style="height: 34px;"><span class="bar-value">36</span><span
+                            class="bar-label">CO2</span></div>
+                    <div class="bar danger" style="height: 24px;"><span class="bar-value">26</span><span
+                            class="bar-label">Autres</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT PAGE 5: Equipment Out & Recommendations -->
+    <div class="page-container content-page">
+        <div class="page-frame"></div>
+        <div class="page-header">
+            <div class="header-logo-section">
+                <img src="assest/logo/logo approuvé.png" alt="Ocean Security" class="header-logo-img">
+                <div class="header-text">
+                    <div class="header-company-name">OCEAN SECURITY</div>
+                    <div class="header-tagline">Our goal is to ensure your safety</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-with-frame">
+            <div class="page-header-text">Rapport de Mission - SERINUS TUNISIA B.V. | Page 5/8</div>
+
+            <h2>Équipements Hors Service</h2>
+            <p>2 unités mises hors service (1,2% du parc).</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Type</th>
+                        <th>Date HS</th>
+                        <th>Motif</th>
+                        <th>Recommandation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>112</td>
+                        <td>Ext. 1 KG Poudre</td>
+                        <td>15/01/26</td>
+                        <td>Déformation, corrosion massive</td>
+                        <td>Réforme immédiate</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Tuyau poteau DN40</td>
+                        <td>16/01/26</td>
+                        <td>Perforation importante</td>
+                        <td>Remplacement complet</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>5. Recommandations</h2>
+            <p>Préconisations hiérarchisées par urgence. Prochaine visite : <strong>Juillet 2026</strong>.</p>
+            <ul style="font-size: 10px; list-style-type: disc; margin-left: 18px;">
+                <li><strong>Urgence Immédiate :</strong> Fuites d'eau poteaux d'incendie (bouchons). Remplacement
+                    systématique des joints d'étanchéité impératif.</li>
+                <li><strong>Court Terme :</strong> Majorité des poteaux sans clé DN40 (sauf n°20,16). Poteau n°3 sans
+                    réduction DN40/60, n°5 bouchon DN60 cassé, n°1 lance DN40 endommagée.</li>
+                <li><strong>Court Terme :</strong> Lance canon : vanne d'arrêt défaillante. Remplacement par composant
+                    certifié requis.</li>
+                <li><strong>Long Terme :</strong> Système informatique de suivi avec alertes automatisées pour
+                    vérifications réglementaires.</li>
+            </ul>
+
+            <h2 style="margin-top: 18px;">6. Pièces Utilisées</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Désignation</th>
+                        <th>Qté</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Manomètre</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Tube plongeur poudre 4/6/9</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Goupille sécurité</td>
+                        <td>45</td>
+                    </tr>
+                    <tr>
+                        <td>Joint étanchéité plat</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Tête extincteur 5KG CO2</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Diffuseur 02KG CO2</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Flexible souflette</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>Flexible tromblon 05KG CO2</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Tête extincteur auxiliaire</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Flexible poudre 4/6/9/12KG</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Tête poudre 6 KG CE</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Joint HP ext CO2</td>
+                        <td>36</td>
+                    </tr>
+                    <tr>
+                        <td>Soufflette 6/9/12KG</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Tube plongeur 50KG</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Tube plongeur 5 KG CO2</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- CONTENT PAGE 6: Portfolio & Suite Pieces -->
+    <div class="page-container content-page">
+        <div class="page-frame"></div>
+        <div class="page-header">
+            <div class="header-logo-section">
+                <img src="assest/logo/logo approuvé.png" alt="Ocean Security" class="header-logo-img">
+                <div class="header-text">
+                    <div class="header-company-name">OCEAN SECURITY</div>
+                    <div class="header-tagline">Our goal is to ensure your safety</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-with-frame">
+            <div class="page-header-text">Rapport de Mission - SERINUS TUNISIA B.V. | Page 6/8</div>
+
+            <h2>6. Pièces Utilisées (suite)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Désignation</th>
+                        <th>Qté</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lance extincteur 50 KG</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>Joint tête poudre 4/6/9/12</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>Sparklet 180 G</td>
+                        <td>5</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 style="margin-top: 25px;">7. Portfolio de Mission (Avant)</h2>
+            <p>Illustrations représentatives de l'état des équipements avant intervention technique.</p>
+
+            <h3 style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">Avant Intervention</h3>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="assest/images/before/WhatsApp Image 2026-01-24 at 15.12.00.jpeg" class="portfolio-img">
+                    <span class="portfolio-label">État Initial (Dégradation)</span>
+                </div>
+                <div class="portfolio-item">
+                    <img src="assest/images/before/WhatsApp Image 2026-01-24 at 15.12.01.jpeg" class="portfolio-img">
+                    <span class="portfolio-label">Non-Conformité Visible</span>
+                </div>
+                <div class="portfolio-item">
+                    <img src="assest/images/before/WhatsApp Image 2026-01-24 at 15.12.01 (1).jpeg"
+                        class="portfolio-img">
+                    <span class="portfolio-label">Corrosion Avancée</span>
+                </div>
+                <div class="portfolio-item">
+                    <img src="assest/images/before/WhatsApp Image 2026-01-24 at 15.12.01 (2).jpeg"
+                        class="portfolio-img">
+                    <span class="portfolio-label">Équipement Hors Service</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT PAGE 8: Portfolio After -->
+    <div class="page-container content-page">
+        <div class="page-frame"></div>
+        <div class="page-header">
+            <div class="header-logo-section">
+                <img src="assest/logo/logo approuvé.png" alt="Ocean Security" class="header-logo-img">
+                <div class="header-text">
+                    <div class="header-company-name">OCEAN SECURITY</div>
+                    <div class="header-tagline">Our goal is to ensure your safety</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-with-frame">
+            <div class="page-header-text">Rapport de Mission - SERINUS TUNISIA B.V. | Page 7/8</div>
+
+            <h2 style="margin-top: 25px;">7. Portfolio de Mission (suite)</h2>
+            <p>Illustrations représentatives de l'état des équipements après intervention technique.</p>
+
+            <h3 style="border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-top: 15px;">Après Intervention</h3>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="assest/images/after/WhatsApp Image 2026-01-24 at 15.12.00 (3).jpeg" class="portfolio-img">
+                    <span class="portfolio-label">Remise en État</span>
+                </div>
+                <div class="portfolio-item">
+                    <img src="assest/images/after/WhatsApp Image 2026-01-24 at 15.12.00 (4).jpeg" class="portfolio-img">
+                    <span class="portfolio-label">Mise en Conformité</span>
+                </div>
+                <div class="portfolio-item">
+                    <img src="assest/images/after/WhatsApp Image 2026-01-24 at 15.15.50.jpeg" class="portfolio-img">
+                    <span class="portfolio-label">Installation Neuf/Rénové</span>
+                </div>
+                <div class="portfolio-item">
+                    <img src="assest/images/after/WhatsApp Image 2026-01-24 at 15.15.51 (1).jpeg" class="portfolio-img">
+                    <span class="portfolio-label">Signalétique & Fixation OK</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT PAGE 7: Certificate -->
+    <div class="page-container content-page">
+        <div class="page-frame"></div>
+        <div class="page-header">
+            <div class="header-logo-section">
+                <img src="assest/logo/logo approuvé.png" alt="Ocean Security" class="header-logo-img">
+                <div class="header-text">
+                    <div class="header-company-name">OCEAN SECURITY</div>
+                    <div class="header-tagline">Our goal is to ensure your safety</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-with-frame">
+            <div class="page-header-text">Rapport de Mission - SERINUS TUNISIA B.V. | Page 8/8</div>
+
+
+            <div class="certificate">
+                <span class="cert-title">CERTIFICAT DE CONFORMITÉ</span>
+                <p class="cert-text">
+                    OCEAN SECURITE atteste avoir procédé, du 09 au 19 janvier 2026,
+                    à une opération complète d'entretien, de maintenance et de vérification technique de l'ensemble des
+                    équipements de sécurité incendie de <strong>SERINUS
+                        TUNISIA B.V.</strong>, sites de Chouech Essaida et Station El Borma.
+                </p>
+                <p style="font-size: 11px;">
+                    Intervention conforme aux normes APSAD R4, APSAD R5 et NF EN 3, avec tests fonctionnels, inspections
+                    visuelles et vérification documentaire exhaustive.
+                </p>
+                <p style="font-size: 11px;">
+                    Les équipements "En Service" sont jugés <strong>CONFORMES</strong> aux exigences réglementaires
+                    et aptes au fonctionnement. Vérification périodique semestrielle obligatoire requise.
+                </p>
+                <p style="font-weight: bold; margin-top: 12px; font-size: 12px;">
+                    Taux de conformité : <span style="color: var(--success-color);">99,4%</span>
+                </p>
+                <p style="font-weight: bold; margin-top: 10px;">Prochaine visite :
+                    <span style="text-decoration: underline;">Juillet 2026</span>
+                </p>
+            </div>
+
+            <div class="signatures">
+                <div class="sig-box">
+                    <span class="sig-title">Le Responsable Technique<br>OCEAN SECURITE<br><br>M. Mohamed
+                        Kallel<br>22/01/2026</span>
+                </div>
+                <div class="sig-box">
+                    <span class="sig-title">Accusé Réception Client<br>SERINUS TUNISIA B.V.<br><br>M. Skander
+                        Jrad<br>Date: _______</span>
+                </div>
+            </div>
+
+            <div
+                style="margin-top: 40px; padding-top: 10px; border-top: 1px solid #ccc; font-size: 8px; text-align: center; color: #777;">
+                <p>Ocean Security - Route El Ain Km 4, Sfax | Cité Jardin Immeuble El Mahdi Magasin N°26</p>
+                <p>Tél: +216 74 299 518 | M.F.: 1632263 VAM 000 - RC: B081314032019 | www.oceansecurity.tn</p>
+                <p style="margin-top: 6px;"><em>Clause : Rapport basé sur l'état à la date d'inspection. Ocean Security
+                        non responsable des dommages ultérieurs.</em></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACK PAGE -->
+    <div class="page-container back-page">
+        <!-- Background image from assest/back page.png -->
+    </div>
+
+</body>
+
+</html>
