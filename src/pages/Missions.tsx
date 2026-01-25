@@ -25,9 +25,16 @@ export default function Missions() {
 
     const getMissionsForDay = (date: Date) => {
         return MISSIONS.filter(m => {
-            const startDate = new Date(m.date);
-            const endDate = m.endDate ? new Date(m.endDate) : startDate;
-            return date >= startDate && date <= endDate;
+            // Parse date string as local date (avoiding timezone issues)
+            const [mStartYear, mStartMonth, mStartDay] = m.date.split('-').map(Number);
+            const startDate = new Date(mStartYear, mStartMonth - 1, mStartDay, 0, 0, 0);
+            
+            const endDateStr = m.endDate || m.date;
+            const [mEndYear, mEndMonth, mEndDay] = endDateStr.split('-').map(Number);
+            const endDate = new Date(mEndYear, mEndMonth - 1, mEndDay, 23, 59, 59);
+            
+            const checkDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0);
+            return checkDate >= startDate && checkDate <= endDate;
         });
     };
 

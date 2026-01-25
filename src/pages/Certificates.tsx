@@ -5,13 +5,26 @@ import { Button } from "../components/ui/Button";
 import { Badge } from "../components/ui/Badge";
 import { Modal } from "../components/ui/Modal";
 import { useLanguage } from "../context/LanguageContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+// Detect mobile device
+const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+};
 
 export default function Certificates() {
     const { t } = useLanguage();
     const [selectedCert, setSelectedCert] = useState<typeof CERTIFICATES[0] | null>(null);
 
     const getSiteName = (siteId: number) => SITES.find(s => s.id === siteId)?.name || 'Unknown Site';
+
+    // Auto-download on mobile
+    useEffect(() => {
+        if (isMobileDevice() && selectedCert && (selectedCert as any).downloadUrl) {
+            window.open((selectedCert as any).downloadUrl, '_blank');
+            setSelectedCert(null);
+        }
+    }, [selectedCert]);
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -65,7 +78,7 @@ export default function Certificates() {
                                 <Button variant="secondary" className="w-full gap-2" onClick={() => setSelectedCert(cert)}>
                                     <Eye size={16} /> {t('common.view')}
                                 </Button>
-                                <Button variant="outline" className="w-full gap-2" onClick={() => (cert as any).downloadUrl && window.open((cert as any).downloadUrl, '_blank')}>
+                                <Button variant="secondary" className="w-full gap-2" onClick={() => (cert as any).downloadUrl && window.open((cert as any).downloadUrl, '_blank')}>
                                     <Download size={16} /> {t('certificates.pdf')}
                                 </Button>
                             </div>
@@ -95,10 +108,12 @@ export default function Certificates() {
                                         {t('common.view')}
                                     </Button>
                                 )}
-                                <Button variant="outline" onClick={() => (selectedCert as any).downloadUrl && window.open(`${import.meta.env.BASE_URL}${(selectedCert as any).downloadUrl.replace(/^\/+/, '')}`, '_blank')}>
-                                    <Download size={18} className="mr-2" />
-                                    {t('certificates.pdf')}
-                                </Button>
+                                {!isMobileDevice() && (
+                                    <Button variant="secondary" onClick={() => (selectedCert as any).downloadUrl && window.open(`${import.meta.env.BASE_URL}${(selectedCert as any).downloadUrl.replace(/^\/+/, '')}`, '_blank')}>
+                                        <Download size={18} className="mr-2" />
+                                        {t('certificates.pdf')}
+                                    </Button>
+                                )}
                             </div>
                         </div>
 

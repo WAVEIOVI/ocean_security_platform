@@ -3,7 +3,7 @@ export const USERS = {
         id: 1,
         name: "Skander Jrad",
         role: "Responsable QHSE",
-        company: "SERINUS TUNISIA B.V.",
+        company: "SERINUS ENERGY B.V.",
         email: "skander.jrad@serinus.tn",
         avatar: "https://ui-avatars.com/api/?name=Skander+Jrad&background=0A2540&color=fff"
     }

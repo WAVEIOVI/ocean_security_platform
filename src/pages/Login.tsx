@@ -6,8 +6,8 @@ import { Lock, Mail, ArrowRight, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 
 export default function Login() {
-    const [email, setEmail] = useState('demo@oceansecurity.tn');
-    const [password, setPassword] = useState('demo123456');
+    const [email, setEmail] = useState('serinus@oceansecurity.tn');
+    const [password, setPassword] = useState('serinus2026');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -24,7 +24,7 @@ export default function Login() {
         setLoading(true);
 
         try {
-            if (email === 'demo@oceansecurity.tn' && password === 'demo123456') {
+            if (email === 'serinus@oceansecurity.tn' && password === 'serinus2026') {
                 await login(email);
                 navigate(from, { replace: true });
             } else {
