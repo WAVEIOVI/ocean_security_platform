@@ -75,12 +75,19 @@ export default function Certificates() {
                             </div>
 
                             <div className="grid grid-cols-2 gap-2">
-                                <Button variant="secondary" className="w-full gap-2" onClick={() => setSelectedCert(cert)}>
+                                <Button variant="secondary" className="w-full gap-2" onClick={() => (cert as any).fileUrl && window.open(`${import.meta.env.BASE_URL}${(cert as any).fileUrl.replace(/^\/+/, '')}`, '_blank')}>
                                     <Eye size={16} /> {t('common.view')}
                                 </Button>
-                                <Button variant="secondary" className="w-full gap-2" onClick={() => (cert as any).downloadUrl && window.open((cert as any).downloadUrl, '_blank')}>
-                                    <Download size={16} /> {t('certificates.pdf')}
-                                </Button>
+                                {!isMobileDevice() && (
+                                    <Button variant="secondary" className="w-full gap-2" onClick={() => (cert as any).downloadUrl && window.open(`${import.meta.env.BASE_URL}${(cert as any).downloadUrl.replace(/^\/+/, '')}`, '_blank')}>
+                                        <Download size={16} /> {t('certificates.pdf')}
+                                    </Button>
+                                )}
+                                {isMobileDevice() && (
+                                    <Button variant="secondary" className="w-full gap-2" onClick={() => (cert as any).downloadUrl && window.open(`${import.meta.env.BASE_URL}${(cert as any).downloadUrl.replace(/^\/+/, '')}`, '_blank')}>
+                                        <Download size={16} /> {t('certificates.pdf')}
+                                    </Button>
+                                )}
                             </div>
                         </CardContent>
                     </Card>

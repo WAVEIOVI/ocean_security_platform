@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FileText, Download, Filter, Search, ChevronDown, Calendar, MapPin } from "lucide-react";
 import { REPORTS, SITES } from "../data/mockData";
 import { Badge } from "../components/ui/Badge";
@@ -6,9 +6,22 @@ import { Button } from "../components/ui/Button";
 import { Modal } from "../components/ui/Modal";
 import { useLanguage } from "../context/LanguageContext";
 
+// Detect mobile device
+const isMobileDevice = () => {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+};
+
 export default function Reports() {
     const { t } = useLanguage();
     const [selectedReport, setSelectedReport] = useState<typeof REPORTS[0] | null>(null);
+
+    // Auto-download on mobile
+    useEffect(() => {
+        if (isMobileDevice() && selectedReport && selectedReport.downloadUrl) {
+            window.open(`${import.meta.env.BASE_URL}${selectedReport.downloadUrl.replace(/^\/+/, '')}`, '_blank');
+            setSelectedReport(null);
+        }
+    }, [selectedReport]);
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -90,10 +103,12 @@ export default function Reports() {
                                         {t('common.view')}
                                     </Button>
                                 )}
-                                <Button variant="outline" onClick={() => selectedReport.downloadUrl && window.open(`${import.meta.env.BASE_URL}${selectedReport.downloadUrl.replace(/^\/+/, '')}`, '_blank')}>
-                                    <Download size={18} className="mr-2" />
-                                    {t('common.download')}
-                                </Button>
+                                {!isMobileDevice() && (
+                                    <Button variant="secondary" onClick={() => selectedReport.downloadUrl && window.open(`${import.meta.env.BASE_URL}${selectedReport.downloadUrl.replace(/^\/+/, '')}`, '_blank')}>
+                                        <Download size={18} className="mr-2" />
+                                        {t('common.download')}
+                                    </Button>
+                                )}
                             </div>
                         </div>
 
