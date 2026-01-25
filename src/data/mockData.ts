@@ -1,11 +1,11 @@
 export const USERS = {
     demo: {
         id: 1,
-        name: "Skander Jrad",
+        name: "SERINUS QHSE",
         role: "Responsable QHSE",
         company: "SERINUS ENERGY B.V.",
-        email: "skander.jrad@serinus.tn",
-        avatar: "https://ui-avatars.com/api/?name=Skander+Jrad&background=0A2540&color=fff"
+        email: "qhse@serinus.tn",
+        avatar: "https://ui-avatars.com/api/?name=SERINUS+QHSE&background=0A2540&color=fff"
     }
 };
 
@@ -254,7 +254,7 @@ export const REPORTS = [
         clientSatisfaction: {
             rating: 5,
             comment: "Mission effectuée avec succès.",
-            signatory: "M. Skander Jrad"
+            signatory: "SERINUS QHSE"
         },
         fileUrl: "/reports/mission-report-fr.html",
         downloadUrl: "/reports/mission-report.pdf"

@@ -42,9 +42,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 // Since this is a demo with static credentials handled in UI, we just set the user.
                 const newUser = {
                     email,
-                    name: 'Skander Jrad',
-                    role: 'Facility Manager',
-                    avatar: 'https://ui-avatars.com/api/?name=Ahmed+Ben+Salah&background=0A2540&color=fff'
+                    name: 'SERINUS QHSE',
+                    role: 'Departement QHSE',
+                    avatar: 'https://ui-avatars.com/api/?name=SERINUS+QHSE&background=0A2540&color=fff'
                 };
                 setUser(newUser);
                 localStorage.setItem('ocean_user', JSON.stringify(newUser));

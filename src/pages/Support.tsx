@@ -24,11 +24,11 @@ export default function Support() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium text-slate-700">{t('support.name')}</label>
-                                        <input className="w-full h-10 px-3 rounded-md border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder={t('support.name')} defaultValue="Skander Jrad" />
+                                        <input className="w-full h-10 px-3 rounded-md border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder={t('support.name')} defaultValue="SERINUS QHSE" />
                                     </div>
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium text-slate-700">{t('support.email')}</label>
-                                        <input className="w-full h-10 px-3 rounded-md border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder={t('support.email')} defaultValue="ahmed.bs@demo.tn" />
+                                        <input className="w-full h-10 px-3 rounded-md border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder={t('support.email')} defaultValue="serinus@oceansecurity.tn" />
                                     </div>
                                 </div>
                                 <div className="space-y-2">
