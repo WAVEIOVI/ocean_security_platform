@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificat de Conformité - SERINUS ENERGY</title>
+    <style>
+        /* Import Azonix Font */
+        @import url('https://fonts.cdnfonts.com/css/azonix');
+
+        /* --- GENERAL STYLES --- */
+        :root {
+            --primary-color: #003366;
+            --secondary-color: #cc0000;
+            --warning-color: #e67e22;
+            --success-color: #27ae60;
+            --accent-color: #f4f4f4;
+            --text-color: #333;
+            --border-color: #ddd;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --font-title: 'Azonix', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+
+        /* --- PAGE CONTAINERS --- */
+        .page-container {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        /* Frame matching paper en tete.png exactly */
+        .page-frame {
+            position: absolute;
+            top: 10mm;
+            left: 10mm;
+            right: 10mm;
+            bottom: 10mm;
+            border: 3px solid #000;
+            pointer-events: none;
+        }
+
+        /* Header section inside the frame */
+        .page-header {
+            position: absolute;
+            top: 10mm;
+            left: 10mm;
+            right: 10mm;
+            height: 70px;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+        }
+
+        .header-logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-logo-img {
+            width: 55px;
+            height: 55px;
+        }
+
+        .header-text {
+            line-height: 1.3;
+        }
+
+        .header-company-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            letter-spacing: 0.5px;
+        }
+
+        .header-tagline {
+            font-size: 8px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* Content area inside frame */
+        .content-with-frame {
+            position: absolute;
+            top: 90px;
+            left: 25mm;
+            right: 25mm;
+            bottom: 25mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .page-header-text {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 30px;
+            padding-bottom: 8px;
+            color: #777;
+            font-size: 9px;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        /* --- CERTIFICATE STYLES --- */
+        .certificate {
+            /* styles removed to blend with page */
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .cert-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: underline;
+        }
+
+        .cert-text {
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        .cert-highlight {
+            font-weight: bold;
+            color: #000;
+            font-size: 15px;
+        }
+
+        .cert-result {
+            font-size: 16px;
+            margin-top: 10px;
+            padding: 10px 12px;
+            border: 2px dashed var(--success-color);
+            display: inline-block;
+            background-color: rgba(39, 174, 96, 0.1);
+        }
+
+        /* --- SIGNATURES --- */
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding: 0 20px;
+        }
+
+        .sig-box {
+            width: 40%;
+            border-top: 2px solid #333;
+            padding-top: 15px;
+            text-align: center;
+        }
+
+        .sig-title {
+            font-weight: bold;
+            font-size: 12px;
+            display: block;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        /* --- TABLE STYLES --- */
+        .recap-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0 12px 0;
+            font-size: 13px;
+        }
+
+        .recap-table thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .recap-table th {
+            padding: 8px 12px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #ccc;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .recap-table td {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .recap-table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        .recap-table tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .recap-table .observation {
+            color: var(--success-color);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .recap-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 12px 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #ccc;
+            font-size: 9px;
+            text-align: center;
+            color: #777;
+        }
+
+        /* --- PRINT SETTINGS --- */
+        @media print {
+            body {
+                background: white;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .page-container {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-container">
+        <!-- Frame border -->
+        <div class="page-frame"></div>
+
+        <!-- Header -->
+        <div class="page-header">
+            <div class="header-logo-section">
+                <img src="assest/logo/logo approuvé.png" alt="Ocean Security" class="header-logo-img">
+                <div class="header-text">
+                    <div class="header-company-name">OCEAN SECURITY</div>
+                    <div class="header-tagline">Our goal is to ensure your safety</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content-with-frame">
+            <div style="margin-top: 40px;"> <!-- Spacer to push content down a bit -->
+                <div class="certificate">
+                    <span class="cert-title">CERTIFICAT DE CONFORMITÉ</span>
+
+                    <p class="cert-text" style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">
+                        Nous, <strong>OCEAN SECURITE</strong>, attestons par la présente avoir procédé,
+                        du <strong>09 au 19 janvier 2026</strong>, à une opération complète d'entretien,
+                        de maintenance et de vérification technique de l'ensemble des équipements de sécurité incendie
+                        de :
+                    </p>
+
+                    <p class="cert-text" style="font-size: 16px; margin: 12px 0; line-height: 1.5;">
+                        <strong>SERINUS ENERGY B.V.</strong>
+                        <span style="font-size: 11px; font-weight: normal;">Sites : Chouech Essaida et Station El
+                            Borma</span>
+                    </p>
+
+                    <p class="cert-text" style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">
+                        Cette intervention a été réalisée conformément aux normes <span class="cert-highlight">APSAD
+                            R4</span>,
+                        <span class="cert-highlight">APSAD R5</span> et <span class="cert-highlight">NF EN 3</span>,
+                        incluant les tests fonctionnels, les inspections visuelles, le contrôle des charges et la
+                        vérification documentaire exhaustive.
+                    </p>
+
+                    <!-- RECAP TABLE -->
+                    <div class="recap-title">Récapitulatif du Matériel Inspecté</div>
+                    <table class="recap-table">
+                        <thead>
+                            <tr>
+                                <th>Désignation</th>
+                                <th style="width: 15%; text-align: center;">Quantités</th>
+                                <th style="width: 20%; text-align: center;">Observation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>EXTINCTEUR 1Kg POUDRE</td>
+                                <td style="text-align: center;">09</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>EXTINCTEUR 6Kg POUDRE</td>
+                                <td style="text-align: center;">09</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>EXTINCTEUR 9Kg POUDRE</td>
+                                <td style="text-align: center;">66</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>EXTINCTEUR 50Kg POUDRE</td>
+                                <td style="text-align: center;">24</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>EXTINCTEUR 2Kg CO2</td>
+                                <td style="text-align: center;">07</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>EXTINCTEUR 5Kg CO2</td>
+                                <td style="text-align: center;">29</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>RIA DN 33</td>
+                                <td style="text-align: center;">03</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>LANCE A CANON</td>
+                                <td style="text-align: center;">03</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>POTEAU INCENDIE</td>
+                                <td style="text-align: center;">20</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="cert-result">
+                        <p style="margin-bottom: 2px; font-size: 14px; line-height: 1.4;">
+                            Les équipements identifiés "En Service" sont jugés
+                            <strong style="font-size: 16px; color: var(--success-color);">CONFORMES</strong>
+                            aux exigences réglementaires et aptes au fonctionnement.
+                        </p>
+                    </div>
+
+                    <p style="font-size: 12px; margin-top: 10px; font-style: italic;">
+                        Une vérification périodique semestrielle obligatoire est requise pour maintenir la validité de
+                        ce certificat.
+                    </p>
+
+                    <p style="font-weight: bold; margin-top: 10px; font-size: 13px; text-decoration: underline;">
+                        Prochaine visite recommandée : Juillet 2026
+                    </p>
+                </div>
+
+                <div class="signatures">
+                    <div class="sig-box">
+                        <span class="sig-title">OCEAN SECURITE</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>Ocean Security - Route El Ain Km 4, Sfax | Cité Jardin Immeuble El Mahdi Magasin N°26</p>
+                <p>Tél: +216 74 299 518 | M.F.: 1632263 VAM 000 - RC: B081314032019 | www.oceansecurity.tn</p>
+                <p style="margin-top: 6px;"><em>Ce certificat n'engage la responsabilité d'Ocean Security qu'à la date
+                        de l'inspection.</em></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
