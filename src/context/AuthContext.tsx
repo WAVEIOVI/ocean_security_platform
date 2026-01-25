@@ -35,7 +35,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 // Since this is a demo with static credentials handled in UI, we just set the user.
                 const newUser = {
                     email,
-                    name: 'Ahmed Ben Salah',
+                    name: 'Skander Jrad',
                     role: 'Facility Manager',
                     avatar: 'https://ui-avatars.com/api/?name=Ahmed+Ben+Salah&background=0A2540&color=fff'
                 };

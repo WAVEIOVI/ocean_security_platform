@@ -24,7 +24,7 @@ export default function Support() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium text-slate-700">{t('support.name')}</label>
-                                        <input className="w-full h-10 px-3 rounded-md border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder={t('support.name')} defaultValue="Ahmed Ben Salah" />
+                                        <input className="w-full h-10 px-3 rounded-md border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-primary/20" placeholder={t('support.name')} defaultValue="Skander Jrad" />
                                     </div>
                                     <div className="space-y-2">
                                         <label className="text-sm font-medium text-slate-700">{t('support.email')}</label>
@@ -35,9 +35,9 @@ export default function Support() {
                                     <label className="text-sm font-medium text-slate-700">{t('support.subject')}</label>
                                     <select className="w-full h-10 px-3 rounded-md border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-primary/20 bg-white">
                                         <option>{t('missions.request')}</option>
-                                        <option>Report an Issue</option>
-                                        <option>Sales Inquiry</option>
-                                        <option>Other</option>
+                                        <option>{t('support.report_issue')}</option>
+                                        <option>{t('support.sales_inquiry')}</option>
+                                        <option>{t('support.other')}</option>
                                     </select>
                                 </div>
                                 <div className="space-y-2">
@@ -70,7 +70,7 @@ export default function Support() {
                             <p className="text-brand-secondary text-sm mb-6">{t('support.emergency_text')}</p>
                             <div className="flex items-center gap-3 text-2xl font-bold bg-white/10 p-4 rounded-lg">
                                 <Phone size={24} />
-                                <span>71 123 456</span>
+                                <span>74 299 518</span>
                             </div>
                         </CardContent>
                     </Card>
@@ -81,8 +81,8 @@ export default function Support() {
                             <div className="flex gap-3">
                                 <MapPin className="text-brand-primary shrink-0" size={20} />
                                 <div>
-                                    <p className="font-medium text-slate-900">OCEAN SECURITY HQ</p>
-                                    <p className="text-slate-500 text-sm">Route EL AIN Km 04 ,<br />Sfax, Tunisia</p>
+                                    <p className="font-medium text-slate-900">{t('support.company_name')}</p>
+                                    <p className="text-slate-500 text-sm whitespace-pre-line">{t('support.hq_address')}</p>
                                 </div>
                             </div>
                             <div className="flex gap-3">

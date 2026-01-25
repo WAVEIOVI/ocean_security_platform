@@ -7,10 +7,10 @@ export function Modal({ isOpen, onClose, children, className }: { isOpen: boolea
 
     return createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-            <div className={cn("bg-white rounded-xl shadow-xl w-full max-h-[90vh] overflow-hidden flex flex-col relative animate-in zoom-in-95 duration-200", className)}>
+            <div className={cn("bg-white rounded-xl shadow-xl w-full h-[90vh] overflow-hidden flex flex-col relative animate-in zoom-in-95 duration-200", className)}>
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors z-10"
+                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 text-slate-500 transition-colors z-[60]"
                 >
                     <X size={20} />
                 </button>

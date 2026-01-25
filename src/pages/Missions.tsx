@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay, isToday, addMonths, subMonths } from "date-fns";
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isToday, addMonths, subMonths } from "date-fns";
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, MapPin, BadgeCheck, User } from "lucide-react";
 import { Button } from "../components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/Card";
@@ -24,7 +24,11 @@ export default function Missions() {
     const nextMonth = () => setCurrentDate(addMonths(currentDate, 1));
 
     const getMissionsForDay = (date: Date) => {
-        return MISSIONS.filter(m => isSameDay(new Date(m.date), date));
+        return MISSIONS.filter(m => {
+            const startDate = new Date(m.date);
+            const endDate = m.endDate ? new Date(m.endDate) : startDate;
+            return date >= startDate && date <= endDate;
+        });
     };
 
     const getSiteName = (siteId: number) => SITES.find(s => s.id === siteId)?.name || 'Unknown Site';

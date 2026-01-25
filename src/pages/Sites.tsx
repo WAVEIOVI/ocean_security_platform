@@ -20,7 +20,7 @@ export default function Sites() {
 
     // Helper to get stats for a site
     const getSiteStats = (siteId: number) => {
-        const siteEquip = EQUIPMENT.filter(e => e.siteId === siteId);
+        const siteEquip = EQUIPMENT.filter((e) => e.siteId === siteId);
         return {
             total: siteEquip.length,
             active: siteEquip.filter(e => e.status === 'active').length,
@@ -29,13 +29,20 @@ export default function Sites() {
             outOfWork: siteEquip.filter(e => e.status === 'out_of_work').length,
             byType: [
                 { name: 'Extincteurs', value: siteEquip.filter(e => e.category === 'Extincteur').length },
-                { name: 'RIA', value: siteEquip.filter(e => e.category === 'RIA').length },
-                { name: 'Autres', value: siteEquip.filter(e => e.category === 'Autre').length },
+                { name: 'RIA DN 33', value: siteEquip.filter(e => e.type === 'RIA DN 33').length },
+                { name: 'Lance Canon', value: siteEquip.filter(e => e.type === 'Lance Canon').length },
+                { name: 'Poteaux Incendie', value: siteEquip.filter(e => e.type === 'Poteau Incendie').length },
+            ],
+            extincteursByType: [
+                { name: 'Poudre', value: siteEquip.filter(e => e.type.toLowerCase().includes('poudre')).length },
+                { name: 'CO2', value: siteEquip.filter(e => e.type.toLowerCase().includes('co2')).length },
             ]
         };
     };
 
-    const COLORS = ['#0A2540', '#00A9A5', '#94a3b8'];
+    const COLORS = ['#0A2540', '#00A9A5', '#94a3b8', '#3b82f6'];
+
+
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -53,8 +60,8 @@ export default function Sites() {
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60" />
                             <div className="absolute bottom-3 left-4 text-white">
-                                <Badge variant={site.status === 'compliant' ? 'success' : 'warning'} className="mb-1 border-0">
-                                    {site.status === 'compliant' ? t('status.compliant') : t('status.attention')}
+                                <Badge variant={getSiteStats(site.id).attention > 0 ? 'warning' : 'success'} className="mb-1 border-0">
+                                    {getSiteStats(site.id).attention > 0 ? t('status.attention') : t('status.compliant')}
                                 </Badge>
                             </div>
                         </div>
@@ -70,7 +77,7 @@ export default function Sites() {
                             <div className="grid grid-cols-2 gap-4 text-sm">
                                 <div className="p-3 bg-slate-50 rounded-lg">
                                     <span className="block text-slate-500 text-xs">{t('stats.total_equipment')}</span>
-                                    <span className="font-semibold text-slate-900">{site.equipmentCount}</span>
+                                    <span className="font-semibold text-slate-900">{getSiteStats(site.id).total}</span>
                                 </div>
                                 <div className="p-3 bg-slate-50 rounded-lg">
                                     <span className="block text-slate-500 text-xs">{t('sites.last_inspection')}</span>
@@ -98,8 +105,8 @@ export default function Sites() {
                             <div>
                                 <div className="flex items-center gap-3 mb-2">
                                     <h2 className="text-2xl font-bold text-slate-900">{selectedSite.name}</h2>
-                                    <Badge variant={selectedSite.status === 'compliant' ? 'success' : 'warning'}>
-                                        {selectedSite.status === 'compliant' ? t('status.compliant') : t('status.attention')}
+                                    <Badge variant={getSiteStats(selectedSite.id).attention > 0 ? 'warning' : 'success'}>
+                                        {getSiteStats(selectedSite.id).attention > 0 ? t('status.attention') : t('status.compliant')}
                                     </Badge>
                                 </div>
                                 <p className="text-slate-500 flex items-center gap-1">
@@ -173,23 +180,40 @@ export default function Sites() {
                                 </ResponsiveContainer>
                             </div>
 
-                            {/* Add more detailed lists or another chart here */}
-                            <div>
+                            {/* Extincteurs by Type Chart */}
+                            <div className="h-[300px]">
+                                <h3 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
+                                    <PieChartIcon size={18} /> Extincteurs par catégories
+                                </h3>
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <PieChart>
+                                        <Pie
+                                            data={getSiteStats(selectedSite.id).extincteursByType}
+                                            cx="50%"
+                                            cy="50%"
+                                            innerRadius={60}
+                                            outerRadius={80}
+                                            paddingAngle={5}
+                                            dataKey="value"
+                                        >
+                                            {getSiteStats(selectedSite.id).extincteursByType.map((_, index) => (
+                                                <Cell key={`cell-ext-${index}`} fill={COLORS[(index + 3) % COLORS.length]} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip />
+                                        <Legend verticalAlign="bottom" height={36} />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                            </div>
+
+                            {/* Zone Distribution */}
+                            <div className="md:col-span-2">
                                 <h3 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
                                     <BarChartIcon size={18} /> {t('sites.zone_distribution')}
                                 </h3>
-                                <div className="space-y-3">
-                                    {EQUIPMENT.filter(e => e.siteId === selectedSite.id).reduce((acc: any[], item) => {
-                                        const existing = acc.find(x => x.zone === item.location);
-                                        if (existing) existing.count++;
-                                        else acc.push({ zone: item.location, count: 1 });
-                                        return acc;
-                                    }, []).map((zone, i) => (
-                                        <div key={i} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
-                                            <span className="text-sm font-medium text-slate-700">{zone.zone}</span>
-                                            <span className="text-sm font-bold text-brand-primary">{zone.count}</span>
-                                        </div>
-                                    ))}
+                                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-dashed border-slate-300">
+                                    <span className="text-sm font-medium text-slate-600 italic">Zones non identifiées</span>
+                                    <Badge variant="neutral">Report Pending</Badge>
                                 </div>
                             </div>
                         </div>

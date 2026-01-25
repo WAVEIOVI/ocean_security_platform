@@ -22,7 +22,162 @@ export const SITES = [
     }
 ];
 
-// ... (EQUIPMENT generation code remains the same)
+
+export interface Equipment {
+    id: string;
+    siteId: number;
+    type: string;
+    category: string;
+    location: string;
+    status: 'active' | 'inactive' | 'attention' | 'out_of_work';
+    lastMaintenance: string;
+    pressure?: string;
+    weight?: string;
+    manufactureDate?: string;
+}
+
+const generateEquipment = (): Equipment[] => {
+    const items: Equipment[] = [];
+
+    // Inventaire Réel du Rapport : 170 Unités
+    // Extincteurs (Poudre + CO2): 144
+    // 108 Poudre: 9 (1kg), 9 (6kg), 66 (9kg), 24 (50kg)
+    // 36 CO2: 7 (2kg), 29 (5kg)
+    // RIA DN 33: 3
+    // Lance Canon: 3
+    // Poteaux Incendie: 20
+
+    // Poudre 1kg (9)
+    for (let i = 1; i <= 9; i++) {
+        items.push({
+            id: `EXT-P01-${i.toString().padStart(2, '0')}`,
+            siteId: 1,
+            type: "Extincteur 1kg Poudre ABC",
+            category: "Extincteur",
+            location: "Zone non identifiée",
+            status: i === 1 ? 'out_of_work' : 'active',
+            lastMaintenance: "2026-01-15",
+            weight: '1 kg',
+            manufactureDate: '2024'
+        });
+    }
+
+    // Poudre 6kg (9)
+    for (let i = 1; i <= 9; i++) {
+        items.push({
+            id: `EXT-P06-${i.toString().padStart(2, '0')}`,
+            siteId: 1,
+            type: "Extincteur 6kg Poudre ABC",
+            category: "Extincteur",
+            location: "Zone non identifiée",
+            status: 'active',
+            lastMaintenance: "2026-01-15",
+            weight: '6 kg',
+            manufactureDate: '2024'
+        });
+    }
+
+    // Poudre 9kg (66)
+    for (let i = 1; i <= 66; i++) {
+        items.push({
+            id: `EXT-P09-${i.toString().padStart(2, '0')}`,
+            siteId: 1,
+            type: "Extincteur 9kg Poudre ABC",
+            category: "Extincteur",
+            location: "Zone non identifiée",
+            status: 'active',
+            lastMaintenance: "2026-01-15",
+            weight: '9 kg',
+            manufactureDate: '2024'
+        });
+    }
+
+    // Poudre 50kg (24)
+    for (let i = 1; i <= 24; i++) {
+        items.push({
+            id: `EXT-P50-${i.toString().padStart(2, '0')}`,
+            siteId: 1,
+            type: "Extincteur 50kg Poudre ABC",
+            category: "Extincteur",
+            location: "Zone non identifiée",
+            status: 'active',
+            lastMaintenance: "2026-01-15",
+            weight: '50 kg',
+            manufactureDate: '2024'
+        });
+    }
+
+    // CO2 2kg (7)
+    for (let i = 1; i <= 7; i++) {
+        items.push({
+            id: `EXT-C02-${i.toString().padStart(2, '0')}`,
+            siteId: 1,
+            type: "Extincteur 2kg CO2",
+            category: "Extincteur",
+            location: "Zone non identifiée",
+            status: 'active',
+            lastMaintenance: "2026-01-15",
+            weight: '2 kg',
+            manufactureDate: '2024'
+        });
+    }
+
+    // CO2 5kg (29)
+    for (let i = 1; i <= 29; i++) {
+        items.push({
+            id: `EXT-C05-${i.toString().padStart(2, '0')}`,
+            siteId: 1,
+            type: "Extincteur 5kg CO2",
+            category: "Extincteur",
+            location: "Zone non identifiée",
+            status: 'active',
+            lastMaintenance: "2026-01-15",
+            weight: '5 kg',
+            manufactureDate: '2024'
+        });
+    }
+
+    // RIA DN 33 (3)
+    for (let i = 1; i <= 3; i++) {
+        items.push({
+            id: `RIA-${i.toString().padStart(3, '0')}`,
+            siteId: 1,
+            type: "RIA DN 33",
+            category: "RIA",
+            location: "Zone non identifiée",
+            status: 'active',
+            lastMaintenance: "2026-01-15"
+        });
+    }
+
+    // Lance Canon (3)
+    for (let i = 1; i <= 3; i++) {
+        items.push({
+            id: `CAN-${i.toString().padStart(3, '0')}`,
+            siteId: 1,
+            type: "Lance Canon",
+            category: "Autre",
+            location: "Zone non identifiée",
+            status: 'active',
+            lastMaintenance: "2026-01-15"
+        });
+    }
+
+    // Poteau Incendie (20)
+    for (let i = 1; i <= 20; i++) {
+        items.push({
+            id: `POT-${i.toString().padStart(3, '0')}`,
+            siteId: 1,
+            type: "Poteau Incendie",
+            category: "Autre",
+            location: "Zone non identifiée",
+            status: 'active',
+            lastMaintenance: "2026-01-15"
+        });
+    }
+
+    return items;
+};
 
 export const EQUIPMENT = generateEquipment();
 
@@ -43,6 +198,7 @@ export const MISSIONS = [
         id: 2,
         reference: "MISSION-260709",
         date: "2026-07-09",
+        endDate: "2026-07-19",
         type: "Vérification Périodique",
         trigger: "Scheduled (6-month)",
         siteId: 1,
@@ -60,7 +216,7 @@ export const REPORTS = [
         title: "Rapport de Mission - SERINUS TUNISIA",
         date: "2026-01-24",
         siteId: 1,
-        status: "compliant",
+        status: "attention",
         size: "3.2 MB",
         technician: "M. Kallel",
         technicianTeam: ["M. Kallel", "M. Chafei"],
@@ -72,8 +228,7 @@ export const REPORTS = [
         },
         summary: "Taux global de conformité : 99,4%. 170 équipements inspectés.",
         findings: [
-            { equipment: "112", issue: "Déformation, corrosion massive", action: "Réforme immédiate", status: "resolved" },
-            { equipment: "9", issue: "Perforation importante", action: "Remplacement complet", status: "resolved" }
+            { equipment: "EXT-P01-01", issue: "Déformation, corrosion massive", action: "Réforme immédiate", status: "resolved" }
         ],
         technicalData: {
             devicesChecked: 170,
@@ -87,9 +242,9 @@ export const REPORTS = [
             ]
         },
         recommendations: [
-            "Remplacement systématique des joints d'étanchéité des poteaux d'incendie.",
-            "Remplacement de la vanne d'arrêt défaillante sur Lance canon.",
-            "Mise en place d'un système informatique de suivi."
+            "01 Urgence immédiate : Remplacement des joints d'étanchéité des poteaux d'incendie.",
+            "01 Court terme : Remplacement de la vanne d'arrêt sur Lance canon et bouchon DN60.",
+            "01 Long terme : Mise en place d'un système informatique de suivi."
         ],
         improvements: [
             "Les extincteurs vides ont été rechargés.",

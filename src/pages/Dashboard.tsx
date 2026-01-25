@@ -37,7 +37,7 @@ export default function Dashboard() {
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div>
                 <h1 className="text-2xl font-bold text-brand-primary">{t('dashboard.title')}</h1>
-                <p className="text-slate-500 text-sm">{t('header.welcome')}, Ahmed Ben Salah</p>
+                <p className="text-slate-500 text-sm">{t('header.welcome')}, Skander Jrad</p>
             </div>
 
             {/* Stats Grid */}
@@ -63,9 +63,9 @@ export default function Dashboard() {
                         <Activity className="h-4 w-4 text-blue-600" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-slate-900">92%</div>
+                        <div className="text-2xl font-bold text-slate-900">99.4%</div>
                         <p className="text-xs text-emerald-600 flex items-center mt-1">
-                            <TrendingUp className="h-3 w-3 mr-1" /> +2% {t('dashboard.from_last_month')}
+                            <TrendingUp className="h-3 w-3 mr-1" /> +7.4% {t('dashboard.from_last_month')}
                         </p>
                     </CardContent>
                 </Card>
@@ -76,7 +76,7 @@ export default function Dashboard() {
                         <AlertTriangle className="h-4 w-4 text-amber-500" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-slate-900">{attentionEquipment}</div>
+                        <div className="text-2xl font-bold text-slate-900">{REPORTS[0]?.recommendations?.length || 0}</div>
                         <p className="text-xs text-slate-500 mt-1">{t('dashboard.requires_maintenance')}</p>
                     </CardContent>
                 </Card>

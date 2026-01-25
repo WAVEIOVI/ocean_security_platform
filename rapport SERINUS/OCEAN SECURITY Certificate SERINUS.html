@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificat de Conformité - SERINUS TUNISIA</title>
+    <title>Certificat de Conformité - SERINUS ENERGY</title>
     <style>
         /* Import Azonix Font */
         @import url('https://fonts.cdnfonts.com/css/azonix');
@@ -156,8 +156,8 @@
 
         .cert-result {
             font-size: 16px;
-            margin-top: 25px;
-            padding: 15px;
+            margin-top: 10px;
+            padding: 10px 12px;
             border: 2px dashed var(--success-color);
             display: inline-block;
             background-color: rgba(39, 174, 96, 0.1);
@@ -184,6 +184,57 @@
             display: block;
             margin-bottom: 40px;
             text-transform: uppercase;
+        }
+
+        /* --- TABLE STYLES --- */
+        .recap-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 8px 0 12px 0;
+            font-size: 13px;
+        }
+
+        .recap-table thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .recap-table th {
+            padding: 8px 12px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #ccc;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .recap-table td {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .recap-table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        .recap-table tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .recap-table .observation {
+            color: var(--success-color);
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .recap-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 12px 0 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .footer {
@@ -237,26 +288,24 @@
 
         <!-- Main Content -->
         <div class="content-with-frame">
-            <div class="page-header-text">Réf: CERT-2026-001-SERINUS | Date: 24/01/2026</div>
-
             <div style="margin-top: 40px;"> <!-- Spacer to push content down a bit -->
                 <div class="certificate">
                     <span class="cert-title">CERTIFICAT DE CONFORMITÉ</span>
 
-                    <p class="cert-text">
+                    <p class="cert-text" style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">
                         Nous, <strong>OCEAN SECURITE</strong>, attestons par la présente avoir procédé,
                         du <strong>09 au 19 janvier 2026</strong>, à une opération complète d'entretien,
                         de maintenance et de vérification technique de l'ensemble des équipements de sécurité incendie
                         de :
                     </p>
 
-                    <p class="cert-text" style="font-size: 18px; margin: 20px 0;">
-                        <strong>SERINUS TUNISIA B.V.</strong><br>
-                        <span style="font-size: 12px; font-weight: normal;">Sites : Chouech Essaida et Station El
+                    <p class="cert-text" style="font-size: 16px; margin: 12px 0; line-height: 1.5;">
+                        <strong>SERINUS ENERGY B.V.</strong>
+                        <span style="font-size: 11px; font-weight: normal;">Sites : Chouech Essaida et Station El
                             Borma</span>
                     </p>
 
-                    <p class="cert-text">
+                    <p class="cert-text" style="font-size: 12px; line-height: 1.5; margin-bottom: 10px;">
                         Cette intervention a été réalisée conformément aux normes <span class="cert-highlight">APSAD
                             R4</span>,
                         <span class="cert-highlight">APSAD R5</span> et <span class="cert-highlight">NF EN 3</span>,
@@ -264,36 +313,86 @@
                         vérification documentaire exhaustive.
                     </p>
 
+                    <!-- RECAP TABLE -->
+                    <div class="recap-title">Récapitulatif du Matériel Inspecté</div>
+                    <table class="recap-table">
+                        <thead>
+                            <tr>
+                                <th>Désignation</th>
+                                <th style="width: 15%; text-align: center;">Quantités</th>
+                                <th style="width: 20%; text-align: center;">Observation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>EXTINCTEUR 1Kg POUDRE</td>
+                                <td style="text-align: center;">09</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>EXTINCTEUR 6Kg POUDRE</td>
+                                <td style="text-align: center;">09</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>EXTINCTEUR 9Kg POUDRE</td>
+                                <td style="text-align: center;">66</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>EXTINCTEUR 50Kg POUDRE</td>
+                                <td style="text-align: center;">24</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>EXTINCTEUR 2Kg CO2</td>
+                                <td style="text-align: center;">07</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>EXTINCTEUR 5Kg CO2</td>
+                                <td style="text-align: center;">29</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>RIA DN 33</td>
+                                <td style="text-align: center;">03</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>LANCE A CANON</td>
+                                <td style="text-align: center;">03</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                            <tr>
+                                <td>POTEAU INCENDIE</td>
+                                <td style="text-align: center;">20</td>
+                                <td class="observation">CONFORME</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                     <div class="cert-result">
-                        <p style="margin-bottom: 8px;">
-                            Les équipements identifiés "En Service" sont jugés<br>
-                            <strong style="font-size: 20px; color: var(--success-color);">CONFORMES</strong><br>
+                        <p style="margin-bottom: 2px; font-size: 14px; line-height: 1.4;">
+                            Les équipements identifiés "En Service" sont jugés
+                            <strong style="font-size: 16px; color: var(--success-color);">CONFORMES</strong>
                             aux exigences réglementaires et aptes au fonctionnement.
-                        </p>
-                        <p style="font-size: 12px; margin-top: 10px;">Taux de Conformité Global : <strong>99,4%</strong>
                         </p>
                     </div>
 
-                    <p style="font-size: 12px; margin-top: 25px; font-style: italic;">
+                    <p style="font-size: 12px; margin-top: 10px; font-style: italic;">
                         Une vérification périodique semestrielle obligatoire est requise pour maintenir la validité de
                         ce certificat.
                     </p>
 
-                    <p style="font-weight: bold; margin-top: 15px; font-size: 14px; text-decoration: underline;">
+                    <p style="font-weight: bold; margin-top: 10px; font-size: 13px; text-decoration: underline;">
                         Prochaine visite recommandée : Juillet 2026
                     </p>
                 </div>
 
                 <div class="signatures">
                     <div class="sig-box">
-                        <span class="sig-title">Le Responsable Technique<br>OCEAN SECURITE</span>
-                        <div style="height: 60px;"></div> <!-- Space for signature -->
-                        <span style="font-size: 11px;">M. Mohamed Kallel</span>
-                    </div>
-                    <div class="sig-box">
-                        <span class="sig-title">Pour Accord Client<br>SERINUS TUNISIA B.V.</span>
-                        <div style="height: 60px;"></div> <!-- Space for signature -->
-                        <span style="font-size: 11px;">M. Skander Jrad</span>
+                        <span class="sig-title">OCEAN SECURITE</span>
                     </div>
                 </div>
             </div>

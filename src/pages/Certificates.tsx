@@ -1,5 +1,5 @@
-import { Award, Download, Eye, CheckCircle2, MapPin, FileText } from "lucide-react";
-import { CERTIFICATES, SITES, REPORTS } from "../data/mockData";
+import { Award, Download, Eye } from "lucide-react";
+import { CERTIFICATES, SITES } from "../data/mockData";
 import { Card, CardContent } from "../components/ui/Card";
 import { Button } from "../components/ui/Button";
 import { Badge } from "../components/ui/Badge";
@@ -12,9 +12,6 @@ export default function Certificates() {
     const [selectedCert, setSelectedCert] = useState<typeof CERTIFICATES[0] | null>(null);
 
     const getSiteName = (siteId: number) => SITES.find(s => s.id === siteId)?.name || 'Unknown Site';
-
-    // Find associated report to get the summary/findings for the certificate view
-    const getReportForCert = (missionId: number) => REPORTS.find(r => r.missionId === missionId);
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -77,122 +74,41 @@ export default function Certificates() {
                 ))}
             </div>
 
-            {/* Certificate Viewer Modal (Reusing the previous Report Style layout as requested) */}
-            <Modal isOpen={!!selectedCert} onClose={() => setSelectedCert(null)} className="max-w-3xl max-h-[90vh] overflow-y-auto">
+            {/* Certificate Viewer Modal */}
+            <Modal isOpen={!!selectedCert} onClose={() => setSelectedCert(null)} className="max-w-7xl">
                 {selectedCert && (
-                    <div className="bg-white min-h-[800px] flex flex-col text-sm border-t-8 border-brand-primary">
-                        {/* Header */}
-                        <div className="p-8 border-b border-slate-200 flex justify-between items-start">
-                            <div className="flex items-center gap-3">
-                                <img src={`${import.meta.env.BASE_URL}assets/logoocean.png`} alt="Ocean Security" className="h-16 w-auto object-contain" onError={(e) => e.currentTarget.style.display = 'none'} />
-                                <div>
-                                    <h2 className="text-xl font-bold text-brand-primary">OCEAN SECURITY</h2>
-                                    <p className="text-xs text-slate-500">Fire Safety & Prevention Services</p>
-                                </div>
+                    <div className="h-full flex flex-col">
+                        {/* Modal Header */}
+                        <div className="sticky top-0 bg-white border-b border-slate-100 p-6 flex justify-between items-start z-10">
+                            <div>
+                                <h2 className="text-2xl font-bold text-slate-900">{t('certificates.cert_of_conformity')}</h2>
+                                <p className="text-slate-500 mt-1 flex items-center gap-2">
+                                    <span className="bg-slate-100 px-2 py-0.5 rounded text-xs font-mono">{selectedCert.reference}</span>
+                                    <span>•</span>
+                                    <span>{selectedCert.issueDate}</span>
+                                </p>
                             </div>
-                            <div className="text-right">
-                                <h3 className="text-xl font-bold text-slate-900 mb-1">{t('certificates.cert_of_conformity')}</h3>
-                                <p className="text-slate-500 font-mono">{selectedCert.reference}</p>
-                                <p className="font-semibold text-slate-900 mt-2">{t('certificates.valid_until')}: {selectedCert.expiryDate}</p>
-                            </div>
-                        </div>
-
-                        <div className="p-8 space-y-8">
-                            {/* Info Grid */}
-                            <div className="grid grid-cols-2 gap-8 bg-slate-50 p-6 rounded-lg border border-slate-100">
-                                <div>
-                                    <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{t('certificates.client_site')}</h4>
-                                    <p className="font-semibold text-slate-900 text-lg">DEMO Manufacturing Company</p>
-                                    <p className="text-slate-600 flex items-center gap-2 mt-1"><MapPin size={16} /> {getSiteName(selectedCert.siteId)}</p>
-                                </div>
-                                <div>
-                                    <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{t('certificates.cert_details')}</h4>
-                                    <p className="text-slate-900 font-medium">Type: {selectedCert.type}</p>
-                                    <p className="text-slate-900 font-medium flex items-center gap-2 mt-1"><FileText size={16} /> {t('certificates.mission_ref')}: {selectedCert.reference.split(' - ')[1]}</p>
-                                </div>
-                            </div>
-
-                            {/* Using the Report Summary Content Here */}
-                            {(() => {
-                                const report = getReportForCert(selectedCert.missionId);
-                                return report ? (
-                                    <>
-                                        {/* Executive Summary */}
-                                        <div>
-                                            <h4 className="text-lg font-bold text-brand-primary mb-3 border-b border-slate-100 pb-2">{t('certificates.executive_summary')}</h4>
-                                            <p className="text-slate-700 leading-relaxed">{report.summary}</p>
-                                        </div>
-
-                                        {/* Findings Table (as justification for certificate status) */}
-                                        <div>
-                                            <h4 className="text-lg font-bold text-brand-primary mb-3 border-b border-slate-100 pb-2">{t('certificates.inspection_findings')}</h4>
-                                            {report.findings && report.findings.length > 0 ? (
-                                                <table className="w-full text-left border-collapse">
-                                                    <thead>
-                                                        <tr className="border-b border-slate-200">
-                                                            <th className="py-2 font-semibold text-slate-600">{t('report.equipment')}</th>
-                                                            <th className="py-2 font-semibold text-slate-600">{t('table.issue')}</th>
-                                                            <th className="py-2 font-semibold text-slate-600">{t('table.action_taken')}</th>
-                                                            <th className="py-2 font-semibold text-slate-600">{t('common.status')}</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {report.findings.map((finding: any, i: number) => (
-                                                            <tr key={i} className="border-b border-slate-100">
-                                                                <td className="py-3 font-mono text-slate-600">{finding.equipment}</td>
-                                                                <td className="py-3 text-red-600 font-medium">{finding.issue}</td>
-                                                                <td className="py-3 text-slate-700">{finding.action}</td>
-                                                                <td className="py-3">
-                                                                    <Badge variant={finding.status === 'resolved' ? 'success' : 'warning'}>
-                                                                        {finding.status}
-                                                                    </Badge>
-                                                                </td>
-                                                            </tr>
-                                                        ))}
-                                                    </tbody>
-                                                </table>
-                                            ) : (
-                                                <div className="p-4 bg-emerald-50 text-emerald-700 rounded-lg flex items-center gap-3">
-                                                    <CheckCircle2 size={20} />
-                                                    {t('certificates.no_issues')}
-                                                </div>
-                                            )}
-                                        </div>
-                                    </>
-                                ) : (
-                                    <p className="text-slate-500 italic">{t('certificates.no_data')}</p>
-                                )
-                            })()}
-
-                            {/* Footer Signatures */}
-                            <div className="grid grid-cols-2 gap-12 mt-12 pt-8 border-t border-slate-200">
-                                <div>
-                                    {/* Stamp Place */}
-                                    <div className="w-40 h-20 mb-2 flex items-center justify-center border-2 border-brand-primary border-dashed rounded opacity-50 font-sans text-brand-primary font-bold -rotate-6">
-                                        OCEAN SECURITY<br />{t('certificates.official_stamp')}
-                                    </div>
-                                </div>
-                                <div>
-                                    <p className="text-xs font-bold text-slate-400 uppercase mb-8">{t('certificates.auth_signature')}</p>
-                                    <img src={`${import.meta.env.BASE_URL}assets/logo_approuve.png`} className="h-16 mb-4 object-contain" alt="Signature" onError={(e) => e.currentTarget.style.display = 'none'} />
-                                    <div className="h-px bg-slate-300 mt-2"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Footer */}
-                        <div className="p-6 bg-slate-50 border-t border-slate-200 flex justify-between items-center mt-auto">
-                            <p className="text-xs text-slate-400">{t('certificates.generated_by')} • {new Date().getFullYear()}</p>
-                            <div className="flex gap-2">
+                            <div className="flex gap-2 pr-10">
                                 {(selectedCert as any).fileUrl && (
-                                    <Button variant="secondary" className="gap-2" onClick={() => window.open((selectedCert as any).fileUrl, '_blank')}>
-                                        <Eye size={16} /> {t('common.view')}
+                                    <Button variant="secondary" onClick={() => window.open(`${import.meta.env.BASE_URL}${(selectedCert as any).fileUrl.replace(/^\/+/, '')}`, '_blank')}>
+                                        <Eye size={18} className="mr-2" />
+                                        {t('common.view')}
                                     </Button>
                                 )}
-                                <Button className="gap-2" onClick={() => (selectedCert as any).downloadUrl && window.open((selectedCert as any).downloadUrl, '_blank')}>
-                                    <Download size={16} /> {t('certificates.download_pdf')}
+                                <Button variant="outline" onClick={() => (selectedCert as any).downloadUrl && window.open(`${import.meta.env.BASE_URL}${(selectedCert as any).downloadUrl.replace(/^\/+/, '')}`, '_blank')}>
+                                    <Download size={18} className="mr-2" />
+                                    {t('certificates.pdf')}
                                 </Button>
                             </div>
+                        </div>
+
+                        {/* Certificate Content - Actual HTML via Iframe */}
+                        <div className="flex-1 overflow-hidden min-h-[600px]">
+                            <iframe
+                                src={`${import.meta.env.BASE_URL}reports/certificate.html`}
+                                className="w-full h-full border-0"
+                                title="Certificate of Conformity"
+                            />
                         </div>
                     </div>
                 )}
